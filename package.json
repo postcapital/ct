@@ -1,0 +1,35 @@
+{
+  "name": "ct",
+  "version": "0.0.0",
+  "description": "ct Context drag and drop web publisher based on nodejs, angularjs and static files",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-sass": "^2.1.0",
+    "gulp-webserver": "^0.9.1",
+    "run-sequence": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/postcapital/ct.git"
+  },
+  "keywords": [
+    "web",
+    "publisher",
+    "angularjs"
+  ],
+  "author": "James Carter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/postcapital/ct/issues"
+  },
+  "homepage": "https://github.com/postcapital/ct"
+}
