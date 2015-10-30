@@ -1,0 +1,30 @@
+{
+  "name": "ct",
+  "version": "0.0.0",
+  "authors": [
+    "James Carter <postcapital@gmail.com>"
+  ],
+  "description": "ct html5 semi-static publisher",
+  "main": "README.rst",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "cms",
+    "publisher"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-tree": "~2.10.0",
+    "font-awesome": "~4.4.0",
+    "foundation": "~5.5.3",
+    "gulp": "~3.9.0"
+  }
+}
