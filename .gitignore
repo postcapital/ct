@@ -6,4 +6,3 @@ build
 .sass-cache
 *.pyo
 *.pyc
-client/dist
