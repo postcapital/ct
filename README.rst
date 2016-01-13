@@ -17,13 +17,18 @@ networks are used for web dependencies.  The project generates a single css file
 gulp.  I decided not to merge javascript files as it was getting bloated.
 
 without installing dev dependencies or production:
-$ node server.js
+
+$ node server/server.js
 
 or to develop/extend:
+
 $ npm install
+
 $ bower install
 
-$ gulp start     compiles scss and serves dev server on http://localhost:8000
+$ gulp start
+
+watches and builds scss and serves dev server on http://localhost:8000
 
 
 
