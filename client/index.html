@@ -1,5 +1,84 @@
+<!DOCTYPE html>
+
 <html>
 
-<link rel="stylesheet" href="../bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
+<head>
+  <title>postcapital ct web publisher</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="dist/css/app.css">
+</head>
+
+<!--<script src="dist/js/mm-foundation.min.js"></script>-->
+
+<body ng-Controller="CtController" ng-app="ctApp">
+  <div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" ng-class="{'is-open-right': offCanvasOpen}">
+      <div class="off-canvas position-right" style="">
+        <div class="">
+          <button class="close-button" aria-label="Close menu" type="button" ng-click="offCanvasOpen=!offCanvasOpen"><span aria-hidden="true">×</span>
+          </button>
+          <label>Page Title
+            <input type="text" ng-model="page.title" ng-keyup="slugify()" required>
+          </label>
+          <label>Page slug
+            <input type="text" ng-model="page.slug" required>
+          </label>
+        <ul class="menu">
+        <a ng-click=""><span class="fa fa-caret-right"></span><span class="fa fa-plus-square"></span> ct</a>
+        <p class="fa fa-file"> Page: <span contenteditable="true">{{page.slug}}</span></p>
+
+        <button class="button small float-right" ng-click="publish()"><i class="fa fa-cloud-upload"></i>&nbsp;Publish to site</button></li>
+        <ul class="menu">
+          <li ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></li>
+        </ul>
+
+        <ul ng-if="true" ng-drag="true" ng-drag-data="{name:'nolink'}" data-allow-transform="true"><span class="fa fa-file">Drag Component</span></ul>
+        
+        <button class="button small" ng-click="addItem()">Add Item</button>
+        <i class="fa fa-tag" ng-repeat="tag in page.tags"> {{tag}}&nbsp;</i>
+        </div>
+      </div>
+      <div class="off-canvas-content" style="height: 200px">
+        <button class="button float-right" ng-click="offCanvasOpen = !offCanvasOpen"><i class="fa fa-edit"></i></button>
+      
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="columns medium-6" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+      <h1>{{page.title}}</h1>
+      <div style="z-index: 0" ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj"
+       ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+        <a href="#" class="large button round">{{obj.name}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="footer" class="columns small-12" style="margin-top: -20%">Footer</div>
+  </div>
+
+<script src="dist/js/angular.min.js"></script>
+<script src="dist/js/ngDraggable.js"></script>
+<script src="app.js"></script>
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+    <ul> 
+        <a ng-click="isOpen = !isOpen"><i class="right" ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i></a> {{data.name}}
+        <a ng-click="add(data)"><i class="fa fa-plus">Add</i></a>
+        <a ng-click="delete(data)" ng-show="data.nodes.length > 0"><i class="fa fa-remove"></i>Delete</a>
+        <li ng-repeat="data in data.nodes" ng-drag="true" ng-class="{'hide': isOpen}" ng-drag-data="{name: data.name}" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
+</script>
+
+</body>
+</html>
+
+
+
 
 

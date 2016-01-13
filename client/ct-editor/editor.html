@@ -1,0 +1,35 @@
+<i class="fa fa-file"> ct-page: {{page.slug}}</i>
+
+<button class="button small float-right" ng-click="publish()"><i class="fa fa-cloud-upload"></i>&nbsp;Publish</button>
+<label>Page Title
+  <input type="text" ng-model="page.title" ng-keyup="setSlug(page.title)" required>
+</label>
+<label>Page Slug
+<input type="text" ng-model="page.slug" required>
+</label>
+
+<i class="fa fa-tag" ng-repeat="tag in page.tags" /><u contenteditable="true"><i>{{tag}}</i></u>
+  <a class="fa fa-close" ng-click="deleteItem()"></a>
+</i>
+<br />
+<button class="button small" ng-click="addItem()">Add Tag</button>
+
+<ul class="accordion">
+  <li ng-repeat="node in tree" ng-include="'tree_item_renderer.html'"></li>
+</ul>
+
+<ul ng-if="true" ng-drag="true" ng-drag-data="{template:'ct-richtext'}" data-allow-transform="true"><li class="fa fa-file">&nbsp;ct-image-grid</li></ul>
+
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+      <a ng-init="node.isOpen=true" ng-click="node.isOpen = !node.isOpen">
+      <i
+        ng-class="{'fa fa-chevron-down': node.isOpen, 'fa fa-chevron-right': !node.isOpen}"></i>
+      </a>{{node.name}}
+      <a ng-click="add(node)"><i class="fa fa-plus"></i></a>
+      <a ng-click="delete(node)" ng-show="node.nodes.length >= 0"><i class="fa fa-remove"></i></a>
+    <ul ng-show="node.isOpen"> 
+      <li ng-repeat="node in node.nodes" ng-drag="true" ng-drag-data="{name: node.name}" ng-include="'tree_item_renderer.html'">
+      </li>
+    </ul>
+</script>

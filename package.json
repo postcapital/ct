@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "del": "^2.0.2",
+    "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-livereload": "^3.8.1",
@@ -13,7 +14,9 @@
     "gulp-webserver": "^0.9.1",
     "run-sequence": "^1.1.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-uglify": "^1.4.2"
+  },
   "scripts": {
     "test": "gulp test"
   },

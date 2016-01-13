@@ -1,10 +1,10 @@
 {
-  "name": "ct",
+  "name": "ct client",
   "version": "0.0.0",
   "authors": [
     "James Carter <postcapital@gmail.com>"
   ],
-  "description": "ct html5 semi-static publisher",
+  "description": "ct/context html5 semi-static publisher",
   "main": "README.rst",
   "moduleType": [
     "es6"
@@ -22,9 +22,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular-ui-tree": "~2.10.0",
     "font-awesome": "~4.4.0",
-    "foundation": "~5.5.3",
-    "gulp": "~3.9.0"
+    "foundation-sites": "~6.0",
+    "ag-grid": "~2.3.5",
+    "ngDraggable": "~0.1.8"
   }
 }

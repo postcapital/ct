@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     //autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     //jshint = require('gulp-jshint'),
-    //uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify'),
     //imagemin = require('gulp-imagemin'),
     //rename = require('gulp-rename'),
     concat = require('gulp-concat'),
@@ -18,44 +18,47 @@ var gulp = require('gulp'),
 
 // Builds your entire app once, without starting a server
 gulp.task('build', function(cb) {
-  sequence('clean', ['copy', 'sass','server'], cb);
+  sequence('clean', ['clean', 'copy', 'sass','server'], cb);
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function(cb) {
 
-  return gulp.src('client/assets/scss/foundation.scss')
-    .pipe(sass({
-      includePaths: ['bower_components/foundation/scss'],
-      outputStyle: (isProduction ? 'compressed' : 'nested'),
-      errLogToConsole: true
-    }))
-    .pipe(gulp.dest('client/dist/css/'))
-  ;
+  gulp.src('assets/scss/app.scss')
+    .pipe(sass({outputStyle: 'compressed',
+      includePaths: ['bower_components/foundation-sites/scss/'],
+      errLogToConsole: true }))
+    .pipe(gulp.dest('client/dist/css'));
+
+  // Font Awesome fonts
+  gulp.src('bower_components/font-awesome/fonts/fontawesome-webfont.*')
+     .pipe(gulp.dest('client/dist/fonts/')); 
+  cb(); 
+});
+
+gulp.task('js', function() {
+  gulp.src('bower_components/angular/angular.min.js')
+    .pipe(gulp.dest('client/dist/js'))
 });
 
 gulp.task('scripts', function() {
   return;
 });
 
-gulp.task('default', ['server'], function() {
-  gulp.start('sass', 'scripts');
+gulp.task('default', function() {
+  gulp.start('sass', 'js', 'server');
 });
 
-/*
 gulp.task('compress', function() {
   return gulp.src('lib/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('client/dist/js/'));
-});*/
-
-gulp.task('watch', function() {
-  // Watch .scss files
-  gulp.watch('client/*.scss', ['styles']);
-  // Watch .js files
-  gulp.watch('client/*.js', ['scripts']);
 });
 
 gulp.task('watch', function() {
+  // Watch .scss files
+  gulp.watch('assets/scss/*.scss', ['styles']);
+  // Watch .js files
+  gulp.watch('*.js', ['scripts']);
 
   // Create LiveReload server
   livereload.listen();
@@ -66,16 +69,16 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function(cb) {
-    del(['dist/assets/css', 'dist/assets/js'], cb)
+    del(['client/dist'], cb)
 });
 
 // Starts a test server, which you can view at http://localhost:8000
 gulp.task('server', function() {
-  gulp.src('build')
+  gulp.src('client/')
     .pipe(webserver({
       port: 8000,
       host: 'localhost',
-      directoryListing: true,
+      directoryListing: false,
       fallback: 'index.html',
       livereload: true,
       open: true

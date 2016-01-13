@@ -1,0 +1,31 @@
+[ng-drag] {
+  cursor: move;
+} 
+
+[ng-drag].drag-over, [ng-drop].drag-enter {
+    border: solid 1px red;
+    font-weight: bold;
+}
+
+[ng-drop] div {
+    position: relative;
+    z-index: 2;
+}
+
+editor-panel {
+    height: 40%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    line-height: 50px;
+    color: #aaa;
+    text-align: center;
+    width: 100%;
+}
+
+.off-canvas-wrapper-inner {
+    position: absolute;
+    min-height: 100vh;
+}
+.off-canvas { width: 60%; padding: 1em; }
+            
