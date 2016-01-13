@@ -36,7 +36,10 @@ gulp.task('sass', function(cb) {
 });
 
 gulp.task('js', function() {
-  gulp.src('bower_components/angular/angular.min.js')
+  gulp.src(['bower_components/angular/angular.min.js',
+            'bower_components/ag-grid/dist/ag-grid.min.js',
+            'bower_components/ngDraggable/ngDraggable.js',
+            ])
     .pipe(gulp.dest('client/dist/js'))
 });
 
@@ -45,6 +48,10 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('default', function() {
+  gulp.start('start');
+});
+
+gulp.task('start', function() {
   gulp.start('sass', 'js', 'server');
 });
 
