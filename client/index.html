@@ -13,7 +13,7 @@
   <div class="off-canvas-wrapper-inner" ng-class="{'is-open-right': !offCanvasOpen}">
     <div class="off-canvas position-right" style="">
       <button class="close-button" aria-label="Close menu" type="button" ng-click="offCanvasOpen=!offCanvasOpen"><span aria-hidden="true">×</span></button>
-      <ng-include src="'ct-editor/editor.html'" />
+      <ng-include src="'ct-editor-sidebar.html'" />
     </div>
     <div class="off-canvas-content">
       <button class="button float-right" ng-click="offCanvasOpen = !offCanvasOpen"><i class="fa fa-edit"></i></button>
@@ -25,6 +25,9 @@
       <div style="z-index: 0" ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj"
        ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">{{obj.name}}
       </div>
+    </div>
+    <div class="columns medium-6">
+      <ng-include src"'pages/story-01.html'" />
     </div>
   </div>
   <div class="row">
