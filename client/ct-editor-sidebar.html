@@ -1,0 +1,60 @@
+<i class="fa fa-files">Search Files</i>
+
+<label>Full language search:
+  <input type="text" ng-keyup="search()" required ng-model="pages.search_input" />
+</label>
+
+<i class="fa fa-file-code-o"> ct-page: {{page.slug}}</i>
+
+<label>Title
+  <input type="text" ng-model="page.title" ng-keyup="setSlug(page.title)" required />
+</label>
+<label>Slug
+  <input type="text" ng-model="page.slug" required />
+</label>
+
+
+<a ng-click="tagsOpen=!tagsOpen" ng-class="{'fa fa-chevron-down': tagsOpen, 'fa fa-chevron-right': !tagsOpen}">&nbsp;Tags</a>
+<div ng-if="tagsOpen" class="hinge-out-from-top row">
+  <div ng-repeat="tag in page.tags" class="columns large-expand small-12">
+    <i class="fa fa-tag"><u>{{tag}}</u></i>
+    <a class="fa fa-close" ng-click="self.deleteItem()"></a></i>
+  </div>
+  <a class="fa fa-plus" ng-click="addItem()"></a>
+</div>
+
+<label>Filter:<input type="text" data-ng-model="filterName" /></label>
+
+<ul class="accordion">
+  <li ng-repeat="node in tree | filter:filterName" ng-include="'tree_item_renderer.html'"></li>
+</ul>
+<p>Components</p>
+<ul class="menu vertical">
+  <li ng-drag="true" ng-drag-data="{name:'ct-richtext'}" data-allow-transform="true" class="fa fa-align-left">&nbsp;ct-richtext</li>
+  <li ng-drag="true" ng-drag-data="{name:'ct-image'}" data-allow-transform="true" class="fa fa-image">&nbsp;ct-image</li>
+  <li ng-drag="true" ng-drag-data="{name:'ct-carousel'}" data-allow-transform="true" class="fa fa-image">&nbsp;ct-carousel</li>
+  <li ng-drag="true" ng-drag-data="{name:'ct-table', template:'<i>Table</i>'}" data-allow-transform="true" class="fa fa-table">&nbsp;ct-grid</li>
+</ul>
+
+<button class="button float-right" ng-click="publish()"><i class="fa fa-cloud-upload"></i>&nbsp;Publish</button>
+
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+      <a ng-init="node.isOpen=true" ng-click="node.isOpen = !node.isOpen">
+      <i
+        ng-show="node.nodes.length > 0" ng-class="{'fa fa-chevron-down': node.isOpen, 'fa fa-chevron-right': !node.isOpen}"></i>
+      </a>
+      <span ng-hide="editing" ng-click="editing = true">{{node.name}} </span> 
+       <form ng-show="editing" ng-submit="editing = false">
+         <input ng-show="editing" type="text" ng-model="node.name" placeholder="Node Name" />
+       </form>
+      <a ng-click="add(node)"><i class="fa fa-plus"></i></a>
+      <a ng-click="delete(node)"><i class="fa fa-remove"></i></a>
+    <ul class="hinge-out-from-top" ng-if="node.isOpen"> 
+      <li ng-repeat="node in node.nodes" ng-include="'tree_item_renderer.html'">
+      </li>
+    </ul>
+</script>
+
+
+

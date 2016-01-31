@@ -25,6 +25,9 @@
     "font-awesome": "~4.4.0",
     "foundation-sites": "~6.0",
     "ag-grid": "~2.3.5",
-    "ngDraggable": "~0.1.8"
+    "ngDraggable": "~0.1.8",
+    "angular-moment": "~0.10.3",
+    "moment": "~2.11.1",
+    "motion-ui": "~1.1.1"
   }
 }

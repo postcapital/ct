@@ -1,9 +1,13 @@
 [ng-drag] {
   cursor: move;
+  border: dashed 2px $primary-color;
 } 
 
-[ng-drag].drag-over, [ng-drop].drag-enter {
-    border: solid 1px red;
+[ng-drag].dragging { 
+  height: 20em;
+}
+[ng-drag].drag-over, [ng-drag].drag-enter, [ng-drop].drag-enter {
+    border: solid 2px $success-color;
     font-weight: bold;
 }
 
@@ -11,7 +15,7 @@
     position: relative;
     z-index: 2;
 }
-
+/*
 editor-panel {
     height: 40%;
     position: fixed;
@@ -21,11 +25,11 @@ editor-panel {
     color: #aaa;
     text-align: center;
     width: 100%;
-}
+}*/
 
 .off-canvas-wrapper-inner {
     position: absolute;
     min-height: 100vh;
 }
-.off-canvas { width: 60%; padding: 1em; }
-            
+.off-canvas { padding: 1em; }
+           

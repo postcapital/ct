@@ -1,4 +1,4 @@
-var mm = angular.module('ctApp', ['ngDraggable']);
+var mm = angular.module('ctApp', ['ngDraggable','ngAnimate']);
 mm.controller("CtController", ['$scope', function($scope) {
     $scope.delete = function(data) {
         data.nodes = [];
@@ -37,7 +37,9 @@ mm.controller("CtController", ['$scope', function($scope) {
 
         $scope.page.tags.pop();
     };
-
+    $scope.publish = function() {
+        $http.post($scope.tree);
+    };
     $scope.centerAnchor = true;
     $scope.toggleCenterAnchor = function () {
         $scope.centerAnchor = !$scope.centerAnchor
@@ -82,3 +84,18 @@ mm.controller("CtController", ['$scope', function($scope) {
     }
 
 }]);
+
+mm.animation('.slide', ['$animateCss', function($animateCss) {
+  return {
+    enter: function(element) {
+      return $animateCss(element, {
+        event: 'enter',
+        structural: true,
+        addClass: 'slide',
+        from: { height:0 },
+        to: { height: 200 }
+      });
+    }
+  }
+}]);
+

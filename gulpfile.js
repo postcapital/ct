@@ -25,7 +25,8 @@ gulp.task('sass', function(cb) {
 
   gulp.src('assets/scss/app.scss')
     .pipe(sass({outputStyle: 'compressed',
-      includePaths: ['bower_components/foundation-sites/scss/'],
+      includePaths: ['bower_components/foundation-sites/scss/',
+      'bower_components/motion-ui/' ],
       errLogToConsole: true }))
     .pipe(gulp.dest('client/dist/css'));
 

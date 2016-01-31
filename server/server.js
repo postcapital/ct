@@ -1,11 +1,8 @@
 var express = require('express');
 var app = express();
 
-
 //app.use('/dist', express.static('client/'));
 app.use(express.static('client'));
-
-
 app.listen(8000);
 
 app.get('/', function (req,res) {
@@ -16,14 +13,14 @@ app.get('/test', function (req, res) {
   res.send('Hello World!');
 });
 
-
 app.post('/save', function (req, res) {
     res.send('saved!');
     var fs = require('fs');
     var filename = 'page.json';
-    fs.writeFile(filename, req.toString(), function (err) {
+    var content = req.data; //.toString();
+    fs.writeFile(filename, content, function (status, err) {
       if (err) return console.log(err);
-        console.log('failed write page.json');
+        console.log('failed write '+filename);
     });
 });
 
