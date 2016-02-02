@@ -12,7 +12,11 @@ mm.controller("CtController", ['$scope', function($scope) {
 
     $scope.tree = [{name: "Node 1", nodes: [ {name: "Node 1-1", nodes: []} ]}];
     $scope.page = { title: "Page Title", slug: 'page-slug', tags: ['tag-1','tag-2'] };
+    $scope.components = [{name: "ct-richtext", icon_class:"fa fa-text"},
+                         {name: "ct-image", icon_class:"fa fa-image"}];
 
+
+    
     $scope.setSlug = function(str) {
       str = str.replace(/^\s+|\s+$/g, ''); // trim
       str = str.toLowerCase();

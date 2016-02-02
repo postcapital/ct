@@ -18,7 +18,7 @@ var gulp = require('gulp'),
 
 // Builds your entire app once, without starting a server
 gulp.task('build', function(cb) {
-  sequence('clean', ['clean', 'copy', 'sass','server'], cb);
+  sequence('clean', ['clean', 'copy', 'sass','js', 'fonts'], cb);
 });
 
 gulp.task('sass', function(cb) {
@@ -29,7 +29,10 @@ gulp.task('sass', function(cb) {
       'bower_components/motion-ui/' ],
       errLogToConsole: true }))
     .pipe(gulp.dest('client/dist/css'));
+  cb();
+});
 
+gulp.task('fonts', function(cb) {
   // Font Awesome fonts
   gulp.src('bower_components/font-awesome/fonts/fontawesome-webfont.*')
      .pipe(gulp.dest('client/dist/fonts/')); 
@@ -53,7 +56,7 @@ gulp.task('default', function() {
 });
 
 gulp.task('start', function() {
-  gulp.start('sass', 'js', 'server');
+  gulp.start('sass', 'js', 'server','watch');
 });
 
 gulp.task('compress', function() {
@@ -64,7 +67,7 @@ gulp.task('compress', function() {
 
 gulp.task('watch', function() {
   // Watch .scss files
-  gulp.watch('assets/scss/*.scss', ['styles']);
+  gulp.watch('assets/scss/*.scss', ['sass']);
   // Watch .js files
   gulp.watch('*.js', ['scripts']);
 
@@ -92,4 +95,3 @@ gulp.task('server', function() {
       open: true
     }));
 });
-

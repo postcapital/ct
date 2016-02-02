@@ -28,18 +28,16 @@
 <ul class="accordion">
   <li ng-repeat="node in tree | filter:filterName" ng-include="'tree_item_renderer.html'"></li>
 </ul>
-<p>Components</p>
-<ul class="menu vertical">
-  <li ng-drag="true" ng-drag-data="{name:'ct-richtext'}" data-allow-transform="true" class="fa fa-align-left">&nbsp;ct-richtext</li>
-  <li ng-drag="true" ng-drag-data="{name:'ct-image'}" data-allow-transform="true" class="fa fa-image">&nbsp;ct-image</li>
-  <li ng-drag="true" ng-drag-data="{name:'ct-carousel'}" data-allow-transform="true" class="fa fa-image">&nbsp;ct-carousel</li>
-  <li ng-drag="true" ng-drag-data="{name:'ct-table', template:'<i>Table</i>'}" data-allow-transform="true" class="fa fa-table">&nbsp;ct-grid</li>
-</ul>
 
+<p>Components</p>
+
+<ul class="menu vertical">
+  <li ng-repeat="component in components" ng-drag="true" ng-drag-data="component.name" data-allow-transform="true" class="component.icon_class">&nbsp;{{component.name}}</li>
+</ul>
+<br />
 <button class="button float-right" ng-click="publish()"><i class="fa fa-cloud-upload"></i>&nbsp;Publish</button>
 
-
-<script type="text/ng-template"  id="tree_item_renderer.html">
+<script type="text/ng-template" id="tree_item_renderer.html">
       <a ng-init="node.isOpen=true" ng-click="node.isOpen = !node.isOpen">
       <i
         ng-show="node.nodes.length > 0" ng-class="{'fa fa-chevron-down': node.isOpen, 'fa fa-chevron-right': !node.isOpen}"></i>
@@ -55,6 +53,4 @@
       </li>
     </ul>
 </script>
-
-
 
